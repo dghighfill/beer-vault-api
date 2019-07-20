@@ -24,6 +24,6 @@ public class BeerController {
 
     @GetMapping("/beers/{beerId}")
     public Beer getBeerById(@PathVariable String beerId) {
-        return this.beerDao.getBeerById(beerId)
+        return this.beerDao.getBeerById(beerId);
     }
 }
