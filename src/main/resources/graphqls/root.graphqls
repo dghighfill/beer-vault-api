@@ -1,0 +1,14 @@
+# Here's a good article https://www.pluralsight.com/guides/building-a-graphql-server-with-spring-boot
+
+schema {
+    query: Query
+}
+# The Root Query for the application
+type Query {
+    beers: [Beer]!
+}
+
+#Doesn't appear that you can have an empty Mutation like an empty Query
+#type Mutation {
+#
+#}

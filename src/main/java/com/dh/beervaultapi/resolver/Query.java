@@ -17,4 +17,12 @@ public class Query implements GraphQLQueryResolver {
     public List<Beer> beers() {
         return beerDao.getBeers();
     }
+
+    public Beer getBeerById(String id) {
+        return beerDao.getBeerById( id );
+    }
+
+    public Integer countBeers(){
+        return beerDao.getBeers().size();
+    }
 }

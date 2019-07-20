@@ -1,0 +1,15 @@
+extend type Query {
+    beerById(id: ID!): Beer
+    countBeers: Int!
+}
+
+type Beer {
+    id: ID!
+    name: String!
+    rating: Float
+    image: String
+}
+#
+#input BeerInput {
+#    id: ID!
+#}

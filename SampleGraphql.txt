@@ -1,0 +1,22 @@
+query{
+  beers {
+    name
+  }
+}
+
+
+query{
+  beerById(id:10){
+    id
+    name
+  }
+}
+
+#Still Testing When I have a nested Object.
+query{
+  beer(beer: {
+    id: "2"
+  }){
+    name
+  }
+}
