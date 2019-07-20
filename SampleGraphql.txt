@@ -4,13 +4,71 @@ query{
   }
 }
 
-
 query{
   beerById(id:10){
     id
     name
   }
 }
+
+query{
+  firstFavorite: beerById( id: 1) {
+    name
+    rating
+  }
+  secondFavorite: beerById( id: 3) {
+    name
+    rating
+  }
+}
+
+query{
+  beers (first : 3) {
+    id
+    name
+    rating
+  }
+}
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+Running three queries at once in Graphical.
+query getAllBeers{
+  beers{
+    id
+    name
+  }
+}
+
+mutation createBeer {
+  createBeer( name: "the cool one",  rating: 5, image: "")
+  {
+    id
+  }
+}
+
+mutation deleteBeer {
+  deleteBeer( id: 1 )
+  {
+    id
+  }
+}
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+=================================================
+query{
+  distributionCenters {
+    id
+    name
+    addressLine1
+    addressLine2
+    city
+    state
+    zip
+	}
+}
+
+
+
+
 
 #Still Testing When I have a nested Object.
 query{

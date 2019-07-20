@@ -1,13 +1,16 @@
 package com.dh.beervaultapi.config;
 
 import com.dh.beervaultapi.dao.BeerDAO;
+import com.dh.beervaultapi.dao.DistributionCenterDAO;
 import com.dh.beervaultapi.domain.Beer;
+import com.dh.beervaultapi.domain.DistributionCenter;
 import com.dh.beervaultapi.mutation.Mutation;
-import com.dh.beervaultapi.resolver.BeerResolver;
 import com.dh.beervaultapi.resolver.Query;
+import com.dh.beervaultapi.subscription.Subscription;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,7 +18,7 @@ import java.util.List;
 public class GraphqlConfiguration {
     @Bean
     public BeerDAO beerDAO() {
-        List<Beer> beers = Arrays.asList(
+        List<Beer> beers = new ArrayList<Beer>(Arrays.asList(
                 new Beer("1", "Tank 7", 3.79F, "path1"),
                 new Beer("2", "Unfiltered Wheat Beer", 3.59F, "path2"),
                 new Beer("3", "The Calling", 3.91F, "path3"),
@@ -26,22 +29,37 @@ public class GraphqlConfiguration {
                 new Beer("8", "Pale Ale", 3.57F, "path8"),
                 new Beer("9", "Tropical Pale Ale", 3.86F, "path9"),
                 new Beer("10", "Bourbon Barrel Quad", 4.03F,"path10")
-                );
+        ));
         return new BeerDAO(beers);
     }
 
     @Bean
-    public Query query(BeerDAO beerDAO) {
-        return new Query(beerDAO);
+    public DistributionCenterDAO distributionCenterDAO() {
+        List<DistributionCenter> distributionCenters = Arrays.asList(
+                new DistributionCenter("1", "Central States Beverage Co", "14220 Wyandotte St", null, "Kansas City", "MO", "64145")
+        );
+        return new DistributionCenterDAO(distributionCenters);
     }
 
     @Bean
-    public BeerResolver beerResolver() {
-        return new BeerResolver();
+    public Query query(BeerDAO beerDao, DistributionCenterDAO distributionCenterDAO) {
+        return new Query(beerDao, distributionCenterDAO());
     }
 
     @Bean
-    public Mutation mutation() {
-        return new Mutation();
+    public Mutation mutation(BeerDAO beerDao) {
+        return new Mutation(beerDao);
     }
+
+    @Bean
+    public Subscription subscription(BeerDAO beerDao) {
+        return new Subscription(beerDao);
+    }
+
+
+//    @Bean
+//    public BeerResolver beerResolver() {
+//        return new BeerResolver();
+//    }
+
 }
