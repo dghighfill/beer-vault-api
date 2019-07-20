@@ -40,14 +40,6 @@ public class Query implements GraphQLQueryResolver {
  }
  */
 
-    public Beer getBeerById(String id) {
-        return beerDao.getBeerById( id );
-    }
-
-    public Integer countBeers(){
-        return beerDao.getBeers().size();
-    }
-
     public List<DistributionCenter> distributionCenters() {
         return distributionCenterDAO.getDistributionCenters();
     }

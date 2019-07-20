@@ -5,6 +5,7 @@ import com.dh.beervaultapi.dao.DistributionCenterDAO;
 import com.dh.beervaultapi.domain.Beer;
 import com.dh.beervaultapi.domain.DistributionCenter;
 import com.dh.beervaultapi.mutation.Mutation;
+import com.dh.beervaultapi.resolver.BeerResolver;
 import com.dh.beervaultapi.resolver.Query;
 import com.dh.beervaultapi.subscription.Subscription;
 import org.springframework.context.annotation.Bean;
@@ -57,9 +58,9 @@ public class GraphqlConfiguration {
     }
 
 
-//    @Bean
-//    public BeerResolver beerResolver() {
-//        return new BeerResolver();
-//    }
+    @Bean
+    public BeerResolver beerResolver(BeerDAO beerDao) {
+        return new BeerResolver(beerDao);
+    }
 
 }

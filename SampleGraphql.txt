@@ -38,6 +38,13 @@ query getAllBeers{
   }
 }
 
+query getBearById{
+  beerById( id: 3 )
+  {
+    id
+    name
+  }
+}
 mutation createBeer {
   createBeer( name: "the cool one",  rating: 5, image: "")
   {
@@ -45,8 +52,16 @@ mutation createBeer {
   }
 }
 
+query getCreatedBear{
+  beerById( id: 11 )
+  {
+    id
+    name
+  }
+}
+
 mutation deleteBeer {
-  deleteBeer( id: 1 )
+  deleteBeer( id: 11 )
   {
     id
   }
