@@ -1,0 +1,12 @@
+type Beer {
+    id: ID!
+    name: String!
+    image: String
+}
+
+# The Root Query for the application
+# Method has to match the method in the Query clasw
+# If there are no parameters for the method leave of the ()
+type Query {
+    beers: [Beer]!
+}
