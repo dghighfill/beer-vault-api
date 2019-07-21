@@ -25,7 +25,7 @@ public class BeerDAO {
 
     public Beer createBeer(String name, Float rating, String image) {
         Integer newIndex = Integer.valueOf(this.beerList.stream().reduce((first, second) -> second).orElse(null).getId()) + 1;
-        Beer newBeer = new Beer(newIndex.toString(), name, rating, image);
+        Beer newBeer = new Beer(newIndex.toString(), name, rating, image, null);
         log.debug("Created Beer {}", newBeer.toString());
         this.beerList.add(newBeer);
         return newBeer;

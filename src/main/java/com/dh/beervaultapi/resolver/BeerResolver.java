@@ -1,28 +1,16 @@
 package com.dh.beervaultapi.resolver;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import com.coxautodev.graphql.tools.GraphQLResolver;
 import com.dh.beervaultapi.dao.BeerDAO;
 import com.dh.beervaultapi.domain.Beer;
+import lombok.AllArgsConstructor;
 
-//public class BeerResolver implements GraphQLResolver<Beer> {
-public class BeerResolver implements GraphQLQueryResolver {
+@AllArgsConstructor
+public class BeerResolver implements GraphQLResolver<Beer> {
+
     private BeerDAO beerDao;
 
-    public BeerResolver(BeerDAO bearDao) {
-        this.beerDao = bearDao;
-    }
-
     public Beer getBeer(Beer beer) {
-        return beerDao.getBeerById( beer.getId() );
+        return beerDao.getBeerById(beer.getId());
     }
-
-    public Beer getBeerById(String id) {
-        return beerDao.getBeerById(id);
-    }
-
-    public Integer countBeers() {
-        return beerDao.getBeers().size();
-    }
-
-
 }

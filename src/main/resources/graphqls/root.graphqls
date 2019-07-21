@@ -11,6 +11,7 @@ type Query {
     # Returns all the beers that are offered by a Brewery.
     beers( first: Int ): [Beer]!
     distributionCenters: [DistributionCenter]!
+    breweries: [Brewery]!
 }
 
 type Mutation {

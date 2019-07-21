@@ -29,8 +29,31 @@ query{
     rating
   }
 }
-/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+/\   D   E   M   O      S   C   R   I   P   T   /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 Running three queries at once in Graphical.
+query getDistributionCenters{
+  distributionCenters {
+    id
+    name
+    addressLine1
+    addressLine2
+    city
+    state
+    zip
+	}
+}
+
+query getAllBreweries{
+  breweries{
+    name
+    addressLine1
+    addressLine2
+    city
+    state
+    zip
+  }
+}
+
 query getAllBeers{
   beers{
     id
@@ -66,24 +89,44 @@ mutation deleteBeer {
     id
   }
 }
-/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 
-=================================================
-query{
-  distributionCenters {
-    id
+query countBeers{
+  countBeers
+}
+
+query getBreweryById{
+  breweryById(id:1){
     name
     addressLine1
-    addressLine2
     city
     state
     zip
-	}
+  }
 }
 
+# First get by 1, then by 2
+query getBrewersBeers{
+  breweryById(id:2){
+    name
+    addressLine1
+    city
+    state
+    zip
+    beers{
+      name
+    }
+  }
+}
 
-
-
+query getBeersBrewer{
+  beers{
+    name
+    brewery{
+      name
+    }
+  }
+}
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 
 #Still Testing When I have a nested Object.
 query{

@@ -10,4 +10,5 @@ public class Beer {
     private String name;
     private Float rating;
     private String image;
+    private Brewery brewery;
 }
