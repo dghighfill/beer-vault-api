@@ -1,6 +1,6 @@
 package com.dh.beervaultapi.config;
 
-import com.dh.beervaultapi.Controller.BeerController;
+import com.dh.beervaultapi.controller.BeerController;
 import com.dh.beervaultapi.dao.BeerDAO;
 import com.dh.beervaultapi.dao.BreweryDAO;
 import com.dh.beervaultapi.dao.DistributionCenterDAO;

@@ -1,4 +1,4 @@
-package com.dh.beervaultapi.Controller;
+package com.dh.beervaultapi.controller;
 
 import com.dh.beervaultapi.dao.BeerDAO;
 import com.dh.beervaultapi.domain.Beer;
