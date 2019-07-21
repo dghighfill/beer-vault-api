@@ -1,5 +1,6 @@
 package com.dh.beervaultapi.config;
 
+import com.dh.beervaultapi.Controller.BeerController;
 import com.dh.beervaultapi.dao.BeerDAO;
 import com.dh.beervaultapi.dao.BreweryDAO;
 import com.dh.beervaultapi.dao.DistributionCenterDAO;
@@ -12,6 +13,8 @@ import com.dh.beervaultapi.resolver.BeerResolver;
 import com.dh.beervaultapi.resolver.BreweryQueryResolver;
 import com.dh.beervaultapi.resolver.Query;
 import com.dh.beervaultapi.subscription.Subscription;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,6 +24,10 @@ import java.util.List;
 
 @Configuration
 public class GraphqlConfiguration {
+
+    @Autowired
+    private ApplicationContext context;
+
     @Bean
     public BeerDAO beerDAO() {
         Brewery boulevard = this.breweryDao().getBreweryById("1");
@@ -71,7 +78,7 @@ public class GraphqlConfiguration {
 
     @Bean
     public Query query(BeerDAO beerDao, DistributionCenterDAO distributionCenterDAO, BreweryDAO breweryDao) {
-        return new Query(beerDao, distributionCenterDAO(), breweryDao);
+        return new Query(beerDao, distributionCenterDAO(), breweryDao, context.getBean(BeerController.class));
     }
 
     @Bean

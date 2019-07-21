@@ -1,6 +1,7 @@
 package com.dh.beervaultapi.resolver;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import com.dh.beervaultapi.Controller.BeerController;
 import com.dh.beervaultapi.dao.BeerDAO;
 import com.dh.beervaultapi.dao.BreweryDAO;
 import com.dh.beervaultapi.dao.DistributionCenterDAO;
@@ -15,17 +16,28 @@ public class Query implements GraphQLQueryResolver {
     private BeerDAO beerDao;
     private DistributionCenterDAO distributionCenterDAO;
     private BreweryDAO breweryDao;
+    private BeerController beerController;
 
-    public Query(BeerDAO beerDao, DistributionCenterDAO distributionCenterDAO, BreweryDAO breweryDao) {
+
+    public Query(BeerDAO beerDao, DistributionCenterDAO distributionCenterDAO, BreweryDAO breweryDao, BeerController beerController) {
         this.beerDao = beerDao;
         this.distributionCenterDAO = distributionCenterDAO;
         this.breweryDao = breweryDao;
+        this.beerController = beerController;
     }
 
     // method has to match the schema field name for method
     public List<Beer> beers(Integer first) {
+        List<Beer> beers;
+
+        // Implementing the new way
+//        beers = beerDao.getBeers();
+
+        // Implementing via strangulation
+        beers = this.beerController.getBeers();
+
         if (null != first) {
-            return beerDao.getBeers().stream().limit(first).collect(Collectors.toList());
+            return beers.stream().limit(first).collect(Collectors.toList());
         }
         return beerDao.getBeers();
     }
