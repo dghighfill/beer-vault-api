@@ -9,8 +9,8 @@ import com.dh.beervaultapi.domain.Brewery;
 import com.dh.beervaultapi.domain.DistributionCenter;
 import com.dh.beervaultapi.mutation.Mutation;
 import com.dh.beervaultapi.resolver.BeerQueryResolver;
-import com.dh.beervaultapi.resolver.BeerResolver;
 import com.dh.beervaultapi.resolver.BreweryQueryResolver;
+import com.dh.beervaultapi.resolver.DistributionCenterQueryResolver;
 import com.dh.beervaultapi.resolver.Query;
 import com.dh.beervaultapi.subscription.Subscription;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,8 +77,8 @@ public class GraphqlConfiguration {
     }
 
     @Bean
-    public Query query(BeerDAO beerDao, DistributionCenterDAO distributionCenterDAO, BreweryDAO breweryDao) {
-        return new Query(beerDao, distributionCenterDAO(), breweryDao, context.getBean(BeerController.class));
+    public Query query() {
+        return new Query();
     }
 
     @Bean
@@ -91,18 +91,23 @@ public class GraphqlConfiguration {
         return new Subscription(beerDao);
     }
 
-    @Bean
-    public BeerResolver beerResolver(BeerDAO beerDao) {
-        return new BeerResolver(beerDao);
-    }
+//    @Bean
+//    public BeerResolver beerResolver(BeerDAO beerDao) {
+//        return new BeerResolver(beerDao);
+//    }
 
     @Bean
     public BeerQueryResolver beerQueryResolver(BeerDAO beerDao) {
-        return new BeerQueryResolver(beerDao);
+        return new BeerQueryResolver(beerDao, context.getBean(BeerController.class));
     }
 
     @Bean
     public BreweryQueryResolver breweryQueryResolver(BreweryDAO breweryDao) {
         return new BreweryQueryResolver(breweryDao);
+    }
+
+    @Bean
+    public DistributionCenterQueryResolver distributionCenterQueryResolver(DistributionCenterDAO distributionCenterDao) {
+        return new DistributionCenterQueryResolver(distributionCenterDao);
     }
 }

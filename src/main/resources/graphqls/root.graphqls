@@ -9,7 +9,7 @@ schema {
 # The Root Query for the application
 type Query {
     # Returns all the beers that are offered by a Brewery.
-    beers( first: Int ): [Beer]!
+    beers( first: Int = 0, last: Int = 0 ): [Beer]!
     distributionCenters: [DistributionCenter]!
     breweries: [Brewery]!
 }
