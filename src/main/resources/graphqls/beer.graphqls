@@ -1,0 +1,24 @@
+extend type Query {
+    # Gets a beer for the specific ID number
+    beerById(id: ID!): Beer
+    # The number of beers that this Brewery can brew.
+    countBeers: Int!
+}
+
+# An alcoholic drink made from yeast-fermented malt flavored with hops.
+type Beer {
+    # The unique identifier of this beer.
+    id: ID!
+    # The name of this beer.
+    name: String!
+    # The rating that has been assigned to this beer.
+    rating: Float
+    # The path image of this beer.
+    image: String
+    # The name of the Brewery that brews this find beer
+    brewery: Brewery
+}
+#
+#input BeerInput {
+#    id: ID!
+#}

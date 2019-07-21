@@ -1,0 +1,138 @@
+query{
+  beers {
+    name
+  }
+}
+
+query{
+  beerById(id:10){
+    id
+    name
+  }
+}
+
+query{
+  firstFavorite: beerById( id: 1) {
+    name
+    rating
+  }
+  secondFavorite: beerById( id: 3) {
+    name
+    rating
+  }
+}
+
+query{
+  beers (first : 3) {
+    id
+    name
+    rating
+  }
+}
+/\   D   E   M   O      S   C   R   I   P   T   /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+Running three queries at once in Graphical.
+query getDistributionCenters{
+  distributionCenters {
+    id
+    name
+    addressLine1
+    addressLine2
+    city
+    state
+    zip
+	}
+}
+
+query getAllBreweries{
+  breweries{
+    name
+    addressLine1
+    addressLine2
+    city
+    state
+    zip
+  }
+}
+
+query getAllBeers{
+  beers{
+    id
+    name
+  }
+}
+
+query getBearById{
+  beerById( id: 3 )
+  {
+    id
+    name
+  }
+}
+mutation createBeer {
+  createBeer( name: "the cool one",  rating: 5, image: "")
+  {
+    id
+  }
+}
+
+query getCreatedBear{
+  beerById( id: 11 )
+  {
+    id
+    name
+  }
+}
+
+mutation deleteBeer {
+  deleteBeer( id: 11 )
+  {
+    id
+  }
+}
+
+query countBeers{
+  countBeers
+}
+
+query getBreweryById{
+  breweryById(id:1){
+    name
+    addressLine1
+    city
+    state
+    zip
+  }
+}
+
+# First get by 1, then by 2
+query getBrewersBeers{
+  breweryById(id:2){
+    name
+    addressLine1
+    city
+    state
+    zip
+    beers{
+      name
+    }
+  }
+}
+
+query getBeersBrewer{
+  beers{
+    name
+    brewery{
+      name
+    }
+  }
+}
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+#Still Testing When I have a nested Object.
+query{
+  beer(beer: {
+    id: "2"
+  }){
+    name
+  }
+}

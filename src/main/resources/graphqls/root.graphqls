@@ -1,0 +1,24 @@
+# Here's a good article https://www.pluralsight.com/guides/building-a-graphql-server-with-spring-boot
+
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+}
+
+# The Root Query for the application
+type Query {
+    # Returns all the beers that are offered by a Brewery.
+    beers( first: Int ): [Beer]!
+    distributionCenters: [DistributionCenter]!
+    breweries: [Brewery]!
+}
+
+type Mutation {
+    deleteBeer( id: ID): Beer!
+    createBeer( name: String! rating: Float! image: String ): Beer!
+}
+
+type Subscription {
+    newBeer: Beer!
+}
