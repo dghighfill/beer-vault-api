@@ -1,10 +1,12 @@
 package com.dh.beervaultapi.dao;
 
+import com.dh.beervaultapi.domain.Beer;
 import com.dh.beervaultapi.domain.Brewery;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -21,5 +23,11 @@ public class BreweryDAO {
     public Brewery getBreweryById(String id) {
         log.debug("Getting Brewery by Id {}", id);
         return this.breweries.stream().filter(brewery -> id.equals(brewery.getId())).findAny().orElse(null);
+    }
+
+    public List<Beer> getBeerList(){
+        List<Beer> beers = new ArrayList<Beer>(  );
+        this.breweries.forEach( ( brewery ) -> beers.addAll( brewery.getBeers() ));
+        return beers;
     }
 }

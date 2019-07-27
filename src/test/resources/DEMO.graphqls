@@ -22,7 +22,18 @@ query getAllBreweries {
 }
 
 query getAllBeers {
-    beers {
+    beers{
+        id
+        name
+        rating
+        brewery{
+            name
+        }
+    }
+}
+
+query getAllBeersForBrewery {
+    beers( brewery:{id:"1"}) {
         id
         name
         rating
@@ -30,31 +41,33 @@ query getAllBeers {
 }
 
 query getAllBeersCondensed {
-    beers {
+    beers( brewery:{id:"1"}) {
         name
     }
 }
 
 query filterBeersById {
-    beerById(id: 10) {
+    beerById(brewery:{id:"1"},id: 10) {
         id
         name
     }
 }
 
 query aliasBeers {
-    firstFavorite: beerById(id: 1) {
+    firstFavorite: beerById(
+        brewery:{id:"1"},id: 1) {
         name
         rating
     }
-    secondFavorite: beerById(id: 3) {
+    secondFavorite: beerById(
+        brewery:{id:"1"},id: 3) {
         name
         rating
     }
 }
 
 query filterByRange {
-    beers(first: 3) {
+    beers( brewery:{id:"1"},first: 3) {
         id
         name
         rating
@@ -62,41 +75,46 @@ query filterByRange {
 }
 
 query filterByRangeAdvanced {
-    beers(first: 2, last: 3) {
+    beers( brewery:{id:"1"},first: 2, last: 3) {
         id
         name
     }
 }
 
 query getBearById {
-    beerById(id: 3) {
+    beerById( brewery:{id:"1"},id: 3) {
         id
         name
     }
 }
 
 mutation createBeer {
-    createBeer(name: "the cool one", rating: 5, image: "") {
+    createBeer(brewery:{id:"1"}, name: "The Cool One", rating: 5, image: "") {
         id
     }
 }
 
 query getCreatedBear {
-    beerById(id: 11) {
+    beerById( brewery:{id:"1"}, id: 11) {
         id
         name
     }
 }
 
 mutation deleteBeer {
-    deleteBeer(id: 11) {
+    deleteBeer( brewery:{id:"1"}, id: 11) {
         id
     }
 }
 
 query countBeers {
+    countBeers(brewery:{id:"1"} )
+}
+
+query countAllBeers {
     countBeers
 }
+
 
 query getBreweryById {
     breweryById(id: 1) {
@@ -110,7 +128,7 @@ query getBreweryById {
 
 # First get by 2, then by 1
 query getBrewersBeers {
-    breweryById(id: 2) {
+    breweryById(id: 1) {
         name
         addressLine1
         city
@@ -123,7 +141,7 @@ query getBrewersBeers {
 }
 
 query getBeersBrewer {
-    beers {
+    beers(brewery:{id:"2"} ) {
         name
         brewery {
             name
@@ -138,7 +156,7 @@ query kitchenSink {
     breweries {
         name
     }
-    beers {
+    beers( brewery:{id:"1"} ) {
         name
     }
 }

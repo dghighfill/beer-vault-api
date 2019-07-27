@@ -18,4 +18,17 @@ public class BreweryQueryResolver implements GraphQLQueryResolver {
     public Brewery getBreweryById(String id) {
         return this.breweryDao.getBreweryById(id);
     }
+
+    public Integer countBeers( Brewery brewery ) {
+        int count = 0;
+        if( null != brewery ){
+            count = breweryDao.getBreweryById( brewery.getId() ).getBeers().size();
+        }else
+        {
+            for( Brewery b : this.breweries() ){
+                count += b.getBeers().size();
+            }
+        }
+        return count;
+    }
 }
