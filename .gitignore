@@ -9,3 +9,8 @@ mvnw.cmd
 *.iws
 *.iml
 *.ipr
+.classpath
+.factorypath
+.project
+start.sh
+/.settings
