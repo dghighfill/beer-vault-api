@@ -1,8 +1,6 @@
 extend type Query {
     # Gets a beer for the specific ID number
-    beerById(id: ID!): Beer
-    # The number of beers that this Brewery can brew.
-    countBeers: Int!
+    beerById(brewery: InputBrewery, id: ID!): Beer
 }
 
 # An alcoholic drink made from yeast-fermented malt flavored with hops.
@@ -18,7 +16,7 @@ type Beer {
     # The name of the Brewery that brews this find beer
     brewery: Brewery
 }
-#
-#input BeerInput {
-#    id: ID!
-#}
+
+input InputBeer {
+    id: ID!
+}

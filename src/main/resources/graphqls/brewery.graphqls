@@ -1,5 +1,7 @@
 extend type Query {
     breweryById(id: ID!): Brewery
+    # The number of beers that this Brewery can brew.
+    countBeers(brewery: InputBrewery): Int!
 }
 
 type Brewery {
@@ -11,4 +13,8 @@ type Brewery {
     state: String!
     zip: String!
     beers: [Beer]
+}
+
+input InputBrewery {
+    id: ID!
 }

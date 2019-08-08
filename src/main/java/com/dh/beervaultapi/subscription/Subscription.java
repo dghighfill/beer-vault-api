@@ -3,6 +3,8 @@ package com.dh.beervaultapi.subscription;
 import com.coxautodev.graphql.tools.GraphQLSubscriptionResolver;
 import com.dh.beervaultapi.dao.BeerDAO;
 import com.dh.beervaultapi.domain.Beer;
+import com.dh.beervaultapi.domain.Brewery;
+import com.sun.jdi.event.BreakpointEvent;
 
 public class Subscription implements GraphQLSubscriptionResolver {
     private BeerDAO beerDao;
@@ -11,7 +13,7 @@ public class Subscription implements GraphQLSubscriptionResolver {
         this.beerDao = beerDao;
     }
 
-    public Beer newBeer() {
-        return beerDao.getBeerById("1");
+    public Beer newBeer( Brewery brewery ) {
+        return beerDao.getBeerById( brewery, "1");
     }
 }

@@ -9,16 +9,16 @@ schema {
 # The Root Query for the application
 type Query {
     # Returns all the beers that are offered by a Brewery.
-    beers( first: Int ): [Beer]!
+    beers( brewery: InputBrewery,  first: Int = 0, last: Int = 0 ): [Beer]!
     distributionCenters: [DistributionCenter]!
     breweries: [Brewery]!
 }
 
 type Mutation {
-    deleteBeer( id: ID): Beer!
-    createBeer( name: String! rating: Float! image: String ): Beer!
+    deleteBeer( brewery: InputBrewery, id: ID): Beer!
+    createBeer( brewery: InputBrewery, name: String! rating: Float! image: String ): Beer!
 }
 
 type Subscription {
-    newBeer: Beer!
+    newBeer( brewery: InputBrewery): Beer!
 }

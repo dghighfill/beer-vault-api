@@ -1,10 +1,12 @@
 package com.dh.beervaultapi.domain;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class Brewery {
     private String id;
     private String name;
@@ -23,5 +25,18 @@ public class Brewery {
         this.city = city;
         this.state = state;
         this.zip = zip;
+    }
+
+    @Override
+    public String toString() {
+        return "Brewery{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", addressLine1='" + addressLine1 + '\'' +
+                ", addressLine2='" + addressLine2 + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                '}';
     }
 }

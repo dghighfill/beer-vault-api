@@ -1,0 +1,162 @@
+query getDistributionCenters {
+    distributionCenters {
+        id
+        name
+        addressLine1
+        addressLine2
+        city
+        state
+        zip
+    }
+}
+
+query getAllBreweries {
+    breweries {
+        name
+        addressLine1
+        addressLine2
+        city
+        state
+        zip
+    }
+}
+
+query getAllBeers {
+    beers{
+        id
+        name
+        rating
+        brewery{
+            name
+        }
+    }
+}
+
+query getAllBeersForBrewery {
+    beers( brewery:{id:"1"}) {
+        id
+        name
+        rating
+    }
+}
+
+query getAllBeersCondensed {
+    beers( brewery:{id:"1"}) {
+        name
+    }
+}
+
+query filterBeersById {
+    beerById(brewery:{id:"1"},id: 10) {
+        id
+        name
+    }
+}
+
+query aliasBeers {
+    firstFavorite: beerById(
+        brewery:{id:"1"},id: 1) {
+        name
+        rating
+    }
+    secondFavorite: beerById(
+        brewery:{id:"1"},id: 3) {
+        name
+        rating
+    }
+}
+
+query filterByRange {
+    beers( brewery:{id:"1"},first: 3) {
+        id
+        name
+        rating
+    }
+}
+
+query filterByRangeAdvanced {
+    beers( brewery:{id:"1"},first: 2, last: 3) {
+        id
+        name
+    }
+}
+
+query getBearById {
+    beerById( brewery:{id:"1"},id: 3) {
+        id
+        name
+    }
+}
+
+mutation createBeer {
+    createBeer(brewery:{id:"1"}, name: "The Cool One", rating: 5, image: "") {
+        id
+    }
+}
+
+query getCreatedBear {
+    beerById( brewery:{id:"1"}, id: 11) {
+        id
+        name
+    }
+}
+
+mutation deleteBeer {
+    deleteBeer( brewery:{id:"1"}, id: 11) {
+        id
+    }
+}
+
+query countBeers {
+    countBeers(brewery:{id:"1"} )
+}
+
+query countAllBeers {
+    countBeers
+}
+
+
+query getBreweryById {
+    breweryById(id: 1) {
+        name
+        addressLine1
+        city
+        state
+        zip
+    }
+}
+
+# First get by 2, then by 1
+query getBrewersBeers {
+    breweryById(id: 1) {
+        name
+        addressLine1
+        city
+        state
+        zip
+        beers {
+            name
+        }
+    }
+}
+
+query getBeersBrewer {
+    beers(brewery:{id:"2"} ) {
+        name
+        brewery {
+            name
+        }
+    }
+}
+
+query kitchenSink {
+    distributionCenters {
+        name
+    }
+    breweries {
+        name
+    }
+    beers( brewery:{id:"1"} ) {
+        name
+    }
+}
