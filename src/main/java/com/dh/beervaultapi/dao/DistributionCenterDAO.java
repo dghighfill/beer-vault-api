@@ -15,6 +15,7 @@ public class DistributionCenterDAO {
     private List<DistributionCenter> distributionCenters;
 
     public List<DistributionCenter> getDistributionCenters() {
+        log.debug("Getting DistributionCenters");
         return this.distributionCenters;
     }
 
