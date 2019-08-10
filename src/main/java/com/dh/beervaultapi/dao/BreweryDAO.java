@@ -17,6 +17,7 @@ public class BreweryDAO {
     private List<Brewery> breweries;
 
     public List<Brewery> getBreweries() {
+        log.debug("Getting Breweries");
         return this.breweries;
     }
 
