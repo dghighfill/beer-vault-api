@@ -27,7 +27,8 @@ public class BreweryDAO {
     }
 
     public List<Beer> getBeerList(){
-        List<Beer> beers = new ArrayList<Beer>(  );
+        log.debug( "Getting Beers" );
+        List<Beer> beers = new ArrayList<>();
         this.breweries.forEach( ( brewery ) -> beers.addAll( brewery.getBeers() ));
         return beers;
     }

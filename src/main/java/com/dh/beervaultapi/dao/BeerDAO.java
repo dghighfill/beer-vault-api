@@ -26,6 +26,7 @@ public class BeerDAO {
         Beer newBeer = new Beer(newIndex.toString(), name, rating, image, null);
         log.debug("Created Beer {}", newBeer.toString());
         beerList.add(newBeer);
+        log.debug( "Created Beer {}", newBeer.getId() );
         return newBeer;
     }
 
